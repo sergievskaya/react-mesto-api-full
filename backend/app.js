@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-// const cors = require('cors');
+const cors = require('cors');
 const { errors } = require('celebrate');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
@@ -20,7 +20,7 @@ const {
 
 const app = express();
 
-// app.use(cors());
+app.use(cors());
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // за 15 минут
