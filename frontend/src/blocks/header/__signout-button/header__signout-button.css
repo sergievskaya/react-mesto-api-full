@@ -1,0 +1,11 @@
+.header__signout-button {
+    background-color: transparent;
+    color: #a9a9a9;
+    border: none;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    padding: 0;
+    margin-left: 24px;
+    cursor: pointer;
+}
