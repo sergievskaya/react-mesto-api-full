@@ -2,13 +2,15 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
+const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 const routerUsers = require('./routes/users');
 const routerCards = require('./routes/cards');
 const errorHandler = require('./middlewares/error-handler');
 const NotFoundError = require('./errors/not-found-error');
-const { requestLogger, errorLogger } = require('./middlewares/logger');
+
 require('dotenv').config();
 
 const {
@@ -17,6 +19,8 @@ const {
 } = process.env;
 
 const app = express();
+
+app.use(cors());
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // за 15 минут
