@@ -68,7 +68,7 @@ function App() {
 
     function handleCardLike(card) {
         // Снова проверяем, есть ли уже лайк на этой карточке
-        const isLiked = card.likes.some(i => i._id === currentUser._id);      
+        const isLiked = card.likes.some(id => id === currentUser._id);      
         // Отправляем запрос в API и получаем обновлённые данные карточки
         api.changeLikeCardStatus(card._id, !isLiked)
             .then((newCard) => {
@@ -184,7 +184,7 @@ function App() {
         auth.getContent(token)
             .then((res)=>{
                 setLoggedIn(true);
-                setUserEmail(res.data.email);
+                setUserEmail(res.email);
             })
             .catch((err) => {
                 console.log(err);
