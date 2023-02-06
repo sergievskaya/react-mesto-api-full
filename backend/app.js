@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -10,8 +11,6 @@ const routerUsers = require('./routes/users');
 const routerCards = require('./routes/cards');
 const errorHandler = require('./middlewares/error-handler');
 const NotFoundError = require('./errors/not-found-error');
-
-require('dotenv').config();
 
 const {
   PORT = 3000,
@@ -38,6 +37,12 @@ app.use(bodyParser.json());
 mongoose.connect(MONGO_URL);
 
 app.use(requestLogger);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 
 app.use(routerUsers);
 app.use(routerCards);
